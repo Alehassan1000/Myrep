@@ -24,7 +24,7 @@
 
 Name: & Syed Al E Hassan Shah Nawaz \\ 
 Registration \#:& CSU-F13-169 \\ 
-Lab Report \#: & 02 \\ 
+Lab Report \#: & 03 \\ 
  Dated:& 11-04-2018\\ 
 Submitted To:& Mr. Usman Ahmed\\ 
 
@@ -42,60 +42,54 @@ Department of Computer Science \& Information Technology
 \centering
 	Experiment \# 1 \\
 
-Queue with Array implementation\\
+Stack with Array implementation\\
 	
 	}    
  \vskip1cm
- \textbf {Objective}\\  The objective of this session is to understand the various operations on queues using array structure in C++. 
+ \textbf {Objective}\\  The objective of this session is to understand the various operations on stack using arrays structure in C++. 
  
  \textbf {Software Tool} \\
 1. Dev C++ \\
 \section{Theory:-} 
 {Inserting value into the queue}\\
 
-In a queue data structure, enQueue is a function used to insert a new element into the queue. In a queue, the new element is always inserted at rear position. The enQueue function takes one integer value as parameter and inserts that value into the queue. We can use the following steps to insert an element into the queue
+Stack is a LIFO (last in first out) structure. It is an ordered list of the same type of elements. A stack is a linear list where all insertions and deletions are permitted only at one end of the list. When elements are added to stack it grow at one end. Similarly, when elements are deleted from a stack, it shrinks at the same end.
 
-•Step 1: Check whether queue is FULL. (rear == SIZE-1)\\
-•Step 2: If it is FULL, then display Queue is FULL. Insertion is not possible and terminate the function.\\
-•Step 3: If it is NOT FULL, then increment rear value by one (rear++) and set queue[rear] = value.\\
+•	push, which adds an element to the collection, and\\
+•	pop, which removes the most recently added element that was not yet removed.\\
 
- Deleting a value from the Queue\\
+Insertions in Stack:\\
 
-In a queue data structure, deQueue() is a function used to delete an element from the queue. In a queue, the element is always deleted from front position. The deQueue() function does not take any value as parameter. We can use the following steps to delete an element from the queue
+ In Stacks, we know the array work, sometimes we need to modify it or add some element in it. For that purpose, we use insertion scheme. By the use of this scheme we insert any element in Stacks using array. In Stack, we maintain only one node which is called TOP. And Push terminology is used as insertions.\\
+    
+Deletion in Stack:\\
 
-•Step 1: Check whether queue is EMPTY. (front == rear)\\
-•Step 2: If it is EMPTY, then display "Queue is EMPTY!!! Deletion is not possible" and terminate the function\\
-•Step 3: If it is NOT EMPTY, then increment the front value by one (front ++). Then display queue[front] as deleted element. Then check whether both front and rear are equal (front == rear), if it TRUE, then set both front and rear to '-1' (front = rear = -1).\\
+In the deletion process, the element of the Stack is deleted on the same node which is called TOP. In stacks, it’s just deleting the index of the TOP element which is added at last. In Stacks Pop terminology is used as deletion.\\    
 
- \subsection{ Algorithm for insertion into the Queue}
-\begin{lstlisting}[language=Python]
- QINSERT (QUEUE, N, FRONT,REAR, ITEM) 
-This procedure inserts an element ITEM into a queue. 
-1. [Queue already filled?]
- If FRONT = 1 and REAR = N or if FRONT =REAR+1 then
- Write OVERFLOW and Return.
-2. [Find new value of REAR] 
-If FRONT = NULL then
-Set FRONT =1 and REAR = 1. else if REAR = N then Set REAR = 1.  
+Display of Stack:\\
+
+In displaying section, the elements of Stacks are being display by using loops and variables as a reverse order. Such that, last element is display at on first and first element enters display at on last.\\
+
+
+ \subsection{Algorithm for top of stack varying method}
+\begin{lstlisting}[language=C++]
+1. Declare and initialize necessary variables, eg top = -1,                   
+2. For push operation, if top = MAXSIZE - 1 
+print "stack overflow" 
 else 
-Set REAR = REAR + 1. [End of if Structure] 
-3. Set QUEUE[REAR] = ITEM [This insert new element]
-4. Return.  
-\end{lstlisting}
- \subsection{ Algorithm for Deletion from Queues}
-\begin{lstlisting}[language=python]
-This procedure deletes an element from a queue.
-1. [Queue already empty?]
-If FRONT = NULL then Write Underflow and Return. 
-2. Set ITEM = QUEUE[FRONT] 
-3. [Find new value of FRONT] 
-If FRONT = REAR then [Queue has only one element to start] 
-Set FRONT = NULL and REAR = NULL 
-else if FRONT = N then 
-Set FRONT = 1 
-else 
-Set FRONT = FRONT + 1 [End of If Structure] 
-4. Return.   
+top = top + 1; 
+   Read item from user 
+stack[top] = item 
+3. For next push operation, goto step 2. 
+4. For pop operation, 
+If top = -1      
+print "Stack underflow" 
+Else      
+item = stack[top]       
+top = top - 1       
+Display item 
+5. For next pop operation, goto step 4. 
+6. Stop
 \end{lstlisting}
 .
 .
@@ -103,88 +97,112 @@ Set FRONT = FRONT + 1 [End of If Structure]
 \section{Code} 
 \begin{lstlisting}[language=C++]
 #include<iostream>
-#include<conio.h>
-#include<stdlib.h>
+#define MAX 5
+ 
 using namespace std;
  
-class queue
-{
-              int queue1[5];
-              int rear,front;
-      public:
-              queue()
-                {
-                     rear=-1;
-                     front=-1;
-                }
-              void insert(int x)
-               {
-                   if(rear >  4)
-                    {
-                       cout <<"queue over flow";
-                       front=rear=-1;
-                       return;
-                    }
-                    queue1[++rear]=x;
-                    cout <<"inserted" <<x;
-               }
-              void delet()
-               {
-                   if(front==rear)
-                     {
-                         cout <<"queue under flow";
-                         return;
-                     }
-                     cout <<"deleted" <<queue1[++front];
-                }
-              void display()
-               {
-                   if(rear==front)
-                     {
-                          cout <<" queue empty";
-                          return;
-                     }
-                   for(int i=front+1;i<=rear;i++)
-                   cout <<queue1[i]<<" ";
-               }
-};
  
-main()
-{
-      int ch;
-      queue qu;
-      while(1)
-        {
-         cout <<"\n1.insert  2.delet  3.display  4.exit\nEnter ur choice";
-         cin >> ch;
-              switch(ch)
-                {
-                  case 1:    cout <<"enter the element";
-                           	 cin >> ch;
-                             qu.insert(ch);
-                             break;
-                  case 2:  qu.delet();  break;
-                  case 3:  qu.display();break;
-                  case 4: exit(0);
-                  }
-          }
-return (0);
+int STACK[MAX],TOP;
+ 
+
+void initStack(){
+    TOP=-1;
+}
+int isEmpty(){
+    if(TOP==-1)
+        return 1;
+    else
+        return 0;
+}
+int isFull(){
+    if(TOP==MAX-1)
+        return 1;
+    else   
+        return 0;
+}
+ 
+void push(int num){
+    if(isFull()){
+        cout<<"STACK is FULL."<<endl;
+        return; 
+    }
+    ++TOP;
+    STACK[TOP]=num;
+    cout<<num<<" has been inserted."<<endl;
+}
+ 
+void display(){
+    int i;
+    if(isEmpty()){
+        cout<<"STACK is EMPTY."<<endl;
+        return;
+    }
+    for(i=TOP;i>=0;i--){
+        cout<<STACK[i]<<" ";
+    }
+    cout<<endl;
+}
+void pop(){
+    int temp;
+    if(isEmpty()){
+        cout<<"STACK is EMPTY."<<endl;
+        return;
+    }
+     
+    temp=STACK[TOP];
+    TOP--;
+    cout<<temp<<" has been deleted."<<endl;   
+}
+int main(){
+    int num;
+    initStack();
+    char ch;
+    do{
+            int a;
+            cout<<"Chosse \n1.push\n"<<"2.pop\n"<<"3.display\n";
+            cout<<"Please enter your choice: ";
+            cin>>a;
+            switch(a)
+            {
+                case 1:
+                    cout<<"Enter an Integer Number: ";
+                    cin>>num;
+                    push(num);
+                break;
+                 
+                case 2: 
+                    pop();
+                    break;
+                 
+                case 3: 
+                    display();
+                    break;
+                 
+                default : 
+                cout<<"An Invalid Choice!!!\n";
+                 
+                 
+            }
+            cout<<"Do you want to continue ? ";
+            cin>>ch;                      
+            }while(ch=='Y'||ch=='y');
+    return 0;
 }
 \end{lstlisting} 
  
+
+\section{Conclusion} 
+I have performed all the operations in Stack with Array implementation .These functions are\\ 
+1-Push\\
+2-Pop\\
+3-Display\\
+
 \begin{figure*}
 \centering
   \includegraphics[width=12cm,height=6cm,keepaspectratio]{2.png}
-\caption{Queue with Array implementation}
+\caption{Stack with Array implementation }
 \label{Figure:2}    
 \end{figure*}
-\section{Conclusion} 
-I have performed all the operations in Queue with array implementation.These functions are\\ 
-1-Insertion\\
-2-Deletion\\
-3-Display\\
-
-
 
 
 

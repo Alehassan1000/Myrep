@@ -1,0 +1,227 @@
+\documentclass[11pt]{article}            % Report class in 11 points
+\parindent0pt  \parskip10pt             % make block paragraphs
+\usepackage{graphicx}
+\usepackage{listings}
+\graphicspath{ {images/} }
+\usepackage{graphicx} %  graphics header file
+\begin{document}
+\begin{titlepage}
+    \centering
+  \vfill
+    \includegraphics[width=8cm]{uni_logo.png} \\ 
+	\vskip2cm
+    {\bfseries\Large
+	Data Structure \\ 
+	
+	\vskip2cm
+	Lab Report 
+	 
+	\vskip2cm
+	}    
+
+\begin{center}
+\begin{tabular}{ l l  } 
+
+Name: & Syed Al E Hassan Shah Nawaz \\ 
+Registration \#:& CSU-F13-169 \\ 
+Lab Report \#: & 03 \\ 
+ Dated:& 11-04-2018\\ 
+Submitted To:& Mr. Usman Ahmed\\ 
+
+ %\hline
+\end{tabular}
+\end{center}
+    \vfill
+    The University of Lahore, Islamabad Campus\\
+Department of Computer Science \& Information Technology
+\end{titlepage}
+
+
+    
+    {\bfseries\Large
+\centering
+	Experiment \# 1 \\
+
+Stack with Array implementation\\
+	
+	}    
+ \vskip1cm
+ \textbf {Objective}\\  The objective of this session is to understand the various operations on stack using arrays structure in C++. 
+ 
+ \textbf {Software Tool} \\
+1. Dev C++ \\
+\section{Theory:-} 
+{Inserting value into the queue}\\
+
+Stack is a LIFO (last in first out) structure. It is an ordered list of the same type of elements. A stack is a linear list where all insertions and deletions are permitted only at one end of the list. When elements are added to stack it grow at one end. Similarly, when elements are deleted from a stack, it shrinks at the same end.
+
+•	push, which adds an element to the collection, and\\
+•	pop, which removes the most recently added element that was not yet removed.\\
+
+Insertions in Stack:\\
+
+ In Stacks, we know the array work, sometimes we need to modify it or add some element in it. For that purpose, we use insertion scheme. By the use of this scheme we insert any element in Stacks using array. In Stack, we maintain only one node which is called TOP. And Push terminology is used as insertions.\\
+    
+Deletion in Stack:\\
+
+In the deletion process, the element of the Stack is deleted on the same node which is called TOP. In stacks, it’s just deleting the index of the TOP element which is added at last. In Stacks Pop terminology is used as deletion.\\    
+
+Display of Stack:\\
+
+In displaying section, the elements of Stacks are being display by using loops and variables as a reverse order. Such that, last element is display at on first and first element enters display at on last.\\
+
+
+ \subsection{Algorithm for top of stack varying method}
+\begin{lstlisting}[language=C++]
+1. Declare and initialize necessary variables, eg top = -1,                   
+2. For push operation, if top = MAXSIZE - 1 
+print "stack overflow" 
+else 
+top = top + 1; 
+   Read item from user 
+stack[top] = item 
+3. For next push operation, goto step 2. 
+4. For pop operation, 
+If top = -1      
+print "Stack underflow" 
+Else      
+item = stack[top]       
+top = top - 1       
+Display item 
+5. For next pop operation, goto step 4. 
+6. Stop
+\end{lstlisting}
+.
+.
+
+\section{Code} 
+\begin{lstlisting}[language=C++]
+#include<iostream>
+#define MAX 5
+ 
+using namespace std;
+ 
+ 
+int STACK[MAX],TOP;
+ 
+
+void initStack(){
+    TOP=-1;
+}
+int isEmpty(){
+    if(TOP==-1)
+        return 1;
+    else
+        return 0;
+}
+int isFull(){
+    if(TOP==MAX-1)
+        return 1;
+    else   
+        return 0;
+}
+ 
+void push(int num){
+    if(isFull()){
+        cout<<"STACK is FULL."<<endl;
+        return; 
+    }
+    ++TOP;
+    STACK[TOP]=num;
+    cout<<num<<" has been inserted."<<endl;
+}
+ 
+void display(){
+    int i;
+    if(isEmpty()){
+        cout<<"STACK is EMPTY."<<endl;
+        return;
+    }
+    for(i=TOP;i>=0;i--){
+        cout<<STACK[i]<<" ";
+    }
+    cout<<endl;
+}
+void pop(){
+    int temp;
+    if(isEmpty()){
+        cout<<"STACK is EMPTY."<<endl;
+        return;
+    }
+     
+    temp=STACK[TOP];
+    TOP--;
+    cout<<temp<<" has been deleted."<<endl;   
+}
+int main(){
+    int num;
+    initStack();
+    char ch;
+    do{
+            int a;
+            cout<<"Chosse \n1.push\n"<<"2.pop\n"<<"3.display\n";
+            cout<<"Please enter your choice: ";
+            cin>>a;
+            switch(a)
+            {
+                case 1:
+                    cout<<"Enter an Integer Number: ";
+                    cin>>num;
+                    push(num);
+                break;
+                 
+                case 2: 
+                    pop();
+                    break;
+                 
+                case 3: 
+                    display();
+                    break;
+                 
+                default : 
+                cout<<"An Invalid Choice!!!\n";
+                 
+                 
+            }
+            cout<<"Do you want to continue ? ";
+            cin>>ch;                      
+            }while(ch=='Y'||ch=='y');
+    return 0;
+}
+\end{lstlisting} 
+ 
+
+\section{Conclusion} 
+I have performed all the operations in Stack with Array implementation .These functions are\\ 
+1-Push\\
+2-Pop\\
+3-Display\\
+
+\begin{figure*}
+\centering
+  \includegraphics[width=12cm,height=6cm,keepaspectratio]{2.png}
+\caption{Stack with Array implementation }
+\label{Figure:2}    
+\end{figure*}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}      
